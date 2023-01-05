@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        pre{
+            color: blue;
+        }
+        h2{
+            color: green;
+        }
+        h1{
+            font-size: 3rem;
+        }
+    </style>
+        <div class="title" style="width: 100%;text-align: center;text-decoration: underline;"><h1>Handson Promise Async Await</h1></div>
+        <h2>Q1. Write one example explaining how you can write a callback function.</h2>
+    <h2>Ans. <pre>
+        function trail(name) {
+            console.log('Hello ' + name);
+            }
+            function main(value_x) {
+            let name = 'Arjun';
+            value_x(name);
+            }
+            main(trail);
+    </pre> </h2>
+        
+    <h2>Q2. Write a callback function to print numbers from 1 to 7, in which 1 should be printed after 1 sec, 2 should be printed after 2 sec, 3 should be printed after 3 sec, and so on.
+        Explain callback hell.
+        Numbers
+        1
+        2
+        3
+        4
+        5
+        6
+        7
+    </h2>
+    <h2>Ans. 
+        <pre>
+            function hell(){
+                setTimeout(()=>{
+                  console.log(1);
+                  setTimeout(()=>{
+                    console.log(2)
+                    setTimeout(()=>{
+                      console.log(3)
+                      setTimeout(()=>{
+                        console.log(4)
+                        setTimeout(()=>{
+                          console.log(5)
+                          setTimeout(()=>{
+                            console.log(6)
+                            setTimeout(()=>{
+                              console.log(7)
+                            },7000)
+                          },6000)
+                        },5000)
+                      },4000)
+                    },3000)
+                  },2000)
+                },1000)
+              }
+              hell();
+        </pre>
+    </h2>
+    <h2>Q3. Write the promise function to print numbers from 1 to 7, in which 1 should be printed after 1 sec, 2 should be printed after 2 sec, 3 should be printed after 3 sec, and so on. Numbers 1 2 3 4 5 6 7</h2>
+    <h2>Ans. <pre>
+      let no_promise = (time) => new Promise((res) => {
+        setTimeout(res, time)
+      }); 
+      let chain = Promise.resolve(); 
+      for (let i = 1; i < 8; i++) { 
+        chain = chain.then(() => { 
+          console.log(i); 
+          return no_promise(i*1000); 
+        }); 
+      }
+    </pre></h2>
+  </pre></h2>
+  <h2>Q4. "Create a promise function accepting an argument, if yes is passed to the function then it should go to resolved state and print Promise Resolved, and if nothing is passed 
+    then it should go to reject the state and catch the error and print Promise Rejected "</h2>
+  <h2><pre>
+  function check(n){
+    return new Promise((res,rej)=>{
+        if(n=='yes'){
+            res('Promise Resolved')
+        }else{
+            rej('Promise Rejected')
+        }
+    })
+  }
+  check('hello')
+  .catch(()=>{
+      return console.log('Error',new Error)
+  })
+  </pre></h2>
+    <h2>Q5. Create examples to explain callback function</h2>
+    <h2>Ans.  <pre>
+      function demo(a,b){
+        return a+b
+      }
+      function main(n){
+        console.log(n)
+      }
+      main(demo(3,10))
+      </pre>
+      </h2>
+    <h2>Q6. Create examples to explain callback hell function</h2>
+    <h2>Ans.<pre>
+      function F_hell(){
+        setTimeout(()=>{
+          console.log('Boss');
+          setTimeout(()=>{
+            console.log("let's")
+            setTimeout(()=>{
+              console.log('kill')
+              setTimeout(()=>{
+                console.log('that')
+                setTimeout(()=>{
+                  console.log('man')
+                  setTimeout(()=>{
+                    console.log('.')
+                    setTimeout(()=>{
+                      console.log('Boss OK')
+                    },1000)
+                  },1000)
+                },1000)
+              },1000)
+            },1000)
+          },1000)
+        },1000)
+      }
+      F_hell();
+    </pre></h2>
+    <h2>Q7. Create examples to explain promises function</h2>
+    <h2>Ans.<pre>
+      function check_Age(age){
+        return new Promise ((res,rej)=>{
+        if(age>=18){
+          return res(console.log('18🙂 💦'))
+        }else{
+         return rej(console.log('Drink 🍼'))
+          }
+       })
+      }
+      check_Age(15);
+    </pre></h2>
+    <h2>Q8. Create examples to explain async await function</h2>
+    <h2><pre>
+      
+    </pre></h2>
+
+    <h2>Q9. Create examples to explain promise.all function</h2>
+    <h2><pre>
+    let clg_life={
+      college:['Bsc','BCA','BA'],
+    }
+    let Death_first=true;   //  try with false
+    let work = (life) =>{
+        return new Promise((res,rej)=>{
+            if(Death_first){
+                setTimeout(()=>{
+                    res(life())
+                })
+            }else{
+                rej(console.log('🙃'));
+            }
+        });
+    };
+    work(()=>console.log(`${clg_life.college[0]} ✔️`))
+    .then(()=>{
+        return console.log('done')
+    })
+    .then(()=>{
+        return console.log(`What's next`);
+    })
+    .then(()=>{
+        return console.log('Party')
+    })
+    .catch(()=>{
+        return console.log('sorry')
+    })
+    .finally(()=>{
+        return console.log('ok')
+    })
+    </pre></h2>
+</body>
+</html>
